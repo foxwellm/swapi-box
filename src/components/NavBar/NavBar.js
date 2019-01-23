@@ -1,17 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './NavBar.css'
+import NavButton from '../NavButton/NavButton'
+import FavoriteNavButton from '../FavoriteNavButton/FavoriteNavButton'
 
-export default class NavBar extends Component {
-  constructor() {
-    super()
-  }
+export const NavBar = ({categories, favoriteCount}) => {
 
+  const navCategoryButtons = categories.map(category => {
+    return <NavButton 
+      category={category} 
+      />
+  })
 
-  render() {
-    return (
+  return (
       <div>
-
+        {navCategoryButtons}
+        <FavoriteNavButton favoriteCount={favoriteCount} />
       </div>
     )
   }
-}
+  
