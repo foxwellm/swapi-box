@@ -9,8 +9,10 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
-
+      <div className="scroll-container">
+        <div className="scroll">
+          <p className="scroll-color">{this.props.films}</p>
+        </div>
       </div>
     )
   }

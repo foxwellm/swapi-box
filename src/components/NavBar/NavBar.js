@@ -12,7 +12,7 @@ export const NavBar = ({categories, favoriteCount}) => {
   })
 
   return (
-      <div>
+      <div className="NavBar">
         {navCategoryButtons}
         <FavoriteNavButton favoriteCount={favoriteCount} />
       </div>

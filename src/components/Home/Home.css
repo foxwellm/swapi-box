@@ -1,0 +1,27 @@
+.scroll-container {
+  position: absolute;
+  width: 50%;
+  height: 75%;
+  bottom: 0;
+  left: 25%;
+  font-size: 5vh;
+  text-align: justify;
+  transform: perspective(200px) rotateX(30deg);
+}
+
+.scroll {
+  color: yellow;
+  position: absolute;
+  top: 100%;
+  animation: scroll 50s linear 1s infinite;
+}
+
+@keyframes scroll {
+  0% {
+    top: 100%;
+  }
+
+  100% {
+    top: -200%;
+  }
+}
