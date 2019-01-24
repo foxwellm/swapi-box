@@ -10,7 +10,7 @@ export default class NavButton extends Component {
   render() {
 
     return (
-      <button>
+      <button onClick={() => this.props.handleNavBtnClick(this.props.category)}>
         {this.props.category}
    
       </button>
