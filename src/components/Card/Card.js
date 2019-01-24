@@ -11,7 +11,7 @@ export default class Card extends Component {
     // debugger
     return (
       <div>
-        {this.props.card}
+        {this.props.card.name}
       </div>
     )
   }

@@ -15,6 +15,7 @@ export default class CardContainer extends Component {
     try {
       const response = await fetch(`https://swapi.co/api/${this.props.page}/`)
       const cards = await response.json()
+      debugger
       this.setState({ cards: cards.results, isLoading:false })
       // this.setState({ films: films.results, isLoading: false })
     } catch (error) {
