@@ -8,9 +8,10 @@ export default class Card extends Component {
 
 
   render() {
+    // debugger
     return (
       <div>
-
+        {this.props.card}
       </div>
     )
   }
