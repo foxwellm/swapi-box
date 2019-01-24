@@ -26,5 +26,5 @@ export const fetchAPI = async (request) => {
 }
 
 // export default {
-//   fetchApi
+//   fetchAPI
 // }

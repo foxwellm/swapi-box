@@ -4,12 +4,14 @@ import { NavBar } from '../NavBar/NavBar'
 import Home from '../Home/Home'
 import CardContainer from '../CardContainer/CardContainer'
 import { fetchAPI } from '../../api/api';
+import { fixData } from '../../helper/helper';
 
 export default class App extends Component {
   constructor() {
     super()
     this.state = {
       categories: ['people', 'planets', 'vehicles'],
+      randomFilm: 2,
       favoriteCount: 5,
       films: null,
       isLoading: true,
@@ -28,6 +30,7 @@ export default class App extends Component {
   }
 
   fetchData = async (category) => {
+    // ksdjfhasf
     let fullResults = []
     const url = 'https://swapi.co/api/';
     let request = `${url + category}/`
@@ -35,8 +38,18 @@ export default class App extends Component {
       try {
         const result = await fetchAPI(request)
         fullResults = fullResults.concat(result.results)
-        result.next ? request = result.next
-          : this.setState({ [category]: fullResults, isLoading: false }, request = null)
+        result.next=null
+        if (result.next) {
+          // request = result.next
+          request = result.next
+        } else {
+          const endresults = await fixData(fullResults, category)
+          this.setState({ [category]: endresults, isLoading: false })
+          request = null
+        }
+        // result.next ? request = result.next
+        //   : fixVehicleData(fullResults)
+          // : this.setState({ [category]: fullResults, isLoading: false }, request = null)
       }
       catch (error) {
         this.setState({ error, isLoading: false });
@@ -44,20 +57,22 @@ export default class App extends Component {
     }
   };
 
-  retrieveData = (topic) => {
+  retrieveData = async (topic) => {
     // debugger
-    if (this.state[topic] === null) {
+    // if (this.state[topic] === null) {
       this.fetchData(topic);
-    } else {
-      debugger
+    
+      
+    // } else {
+    //   debugger
 
-    }
+    // }
   }
 
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    this.retrieveData('vehicles')
+    this.retrieveData('planets')
   }
 
   // async componentDidMount() {
@@ -73,7 +88,7 @@ export default class App extends Component {
 
 
   render() {
-    const { categories, favoriteCount, films, isLoading, page } = this.state
+    const { categories, favoriteCount, films, isLoading, page, randomFilm } = this.state
     // debugger
     if (!isLoading) {
       return (
@@ -81,7 +96,7 @@ export default class App extends Component {
           <NavBar categories={categories} favoriteCount={favoriteCount} handleNavBtnClick={this.handleNavBtnClick} />
           {
             // page ? <CardContainer page={page}/> :
-            //   <Home films={films[0].opening_crawl} />
+            //   <Home films={films[randomFilm].opening_crawl} />
           }
 
 
