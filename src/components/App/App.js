@@ -30,7 +30,6 @@ export default class App extends Component {
   }
 
   fetchData = async (category) => {
-    // ksdjfhasf
     let fullResults = []
     const url = 'https://swapi.co/api/';
     let request = `${url + category}/`
@@ -38,7 +37,7 @@ export default class App extends Component {
       try {
         const result = await fetchAPI(request)
         fullResults = fullResults.concat(result.results)
-        result.next=null
+        result.next=null //testing
         if (result.next) {
           // request = result.next
           request = result.next

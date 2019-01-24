@@ -13,7 +13,7 @@ export const fixData = (results, category) => {
       return fixPlanetsData(results)
       break;
     case 'people':
-      // return fixPeopleData(results)
+      return fixPeopleData(results)
       break;
   }
 }
@@ -51,6 +51,11 @@ const fixPlanetsData = (planetsResults) => {
   
   const planets = planetsResults.map(async planet => {
     const residents = await getResidents(planet.residents)
+
+    // const residents = planets.residents.map(resident => {
+    //   const residentJSON = await fetchAPI(resident)
+    //   return residentJSON.name
+    // })
     // console.log(residents)
     // return await Promise.all(planet.residents.map( async (resident) => {
     //   const residentJSON = await fetchAPI(resident) 
@@ -72,31 +77,22 @@ const fixPlanetsData = (planetsResults) => {
 
 const getResidents = (residents) => {
   const endResidents = residents.map( async resident => {
-    
     const residentJSON = await fetchAPI(resident)
-    // const response = await fetch(resident)
-    // const result = await response.json()
     return residentJSON.name
-    // console.log(resident)
-    // return fetched.name
   })
 return Promise.all(endResidents)
-
 }
 
-
-// const fixPeopleData = (peopleResults) => {
-//   const people = peopleResults.map(async person => {
-//     const residents = await getResidents(planet.residents)
- 
-
-//     return {
-//       name: planet.name,
-//       terrain: planet.terrain,
-//       population: planet.population,
-//       climate: planet.climate,
-//       residents: residents
-//     }
-//   })
-//   return Promise.all(people)
-// }
+const fixPeopleData = (peopleResults) => {
+  const people = peopleResults.map(async person => {
+    const speciesJSON = await fetchAPI(person.species[0])
+    const planetJSON = await fetchAPI(person.homeworld)
+    return {
+      name: person.name,
+      species: speciesJSON.name,
+      homeworld: planetJSON.name,
+      population: planetJSON.population
+    }
+  })
+  return Promise.all(people)
+}
