@@ -4,7 +4,7 @@ import { NavBar } from '../NavBar/NavBar'
 import Home from '../Home/Home'
 import CardContainer from '../CardContainer/CardContainer'
 import { fetchAPI } from '../../api/api';
-import { fixData } from '../../helper/helper';
+import * as helper from '../../helper/helper';
 
 export default class App extends Component {
   constructor() {
@@ -42,7 +42,7 @@ export default class App extends Component {
           // request = result.next
           request = result.next
         } else {
-          const endresults = await fixData(fullResults, category)
+          const endresults = await helper[`${category}DataCleaner`](fullResults, category)
           this.setState({ [category]: endresults, isLoading: false })
           request = null
         }

@@ -1,25 +1,6 @@
-import { fetchAPI } from '../api/api';
+import {fetchAPI} from '../api/api';
 
-
-export const fixData = (results, category) => {
-  switch (category) {
-    case 'films':
-      return fixFilmsData(results)
-      break;
-    case 'vehicles':
-    return fixVehicleData(results)
-    break;
-    case 'planets':
-      return fixPlanetsData(results)
-      break;
-    case 'people':
-      return fixPeopleData(results)
-      break;
-  }
-}
-
-const fixFilmsData = (filmsResults) => {
-  // debugger
+export const filmsDataCleaner = (filmsResults) => {
   const films = filmsResults.map(film => {
     return {
       title: film.title,
@@ -33,8 +14,7 @@ const fixFilmsData = (filmsResults) => {
   return films
 }
 
-const fixVehicleData = (vehicleResults) => {
-// debugger
+export const vehiclesDataCleaner = (vehicleResults) => {
   const vehicles = vehicleResults.map(vehicle => {
     return {
       name: vehicle.name,
@@ -46,24 +26,18 @@ const fixVehicleData = (vehicleResults) => {
   return vehicles
 }
 
-const fixPlanetsData = (planetsResults) => {
-  // const test = await fetchAPI(planetsResults[0].residents[0])
-  
+export const planetsDataCleaner = (planetsResults) => {
   const planets = planetsResults.map(async planet => {
-    const residents = await getResidents(planet.residents)
-
-    // const residents = planets.residents.map(resident => {
-    //   const residentJSON = await fetchAPI(resident)
-    //   return residentJSON.name
-    // })
-    // console.log(residents)
-    // return await Promise.all(planet.residents.map( async (resident) => {
-    //   const residentJSON = await fetchAPI(resident) 
-    //   return residentJSON.name
-    // }))
-
-    // const residents = await Promise.all(promisedResidents)
-
+  const residents = await getResidents(planet.residents)
+// let residents
+//     if(planet.residents.length > 1) {
+//     residents = await planet.residents.map( async resident => {
+//       const residentJSON = await API.fetchAPI(resident)
+//       return Promise.all(residentJSON.name)
+//     })
+//   } else {
+//     resident = 'none'
+//   }
     return {
       name: planet.name,
       terrain: planet.terrain,
@@ -83,7 +57,7 @@ const getResidents = (residents) => {
 return Promise.all(endResidents)
 }
 
-const fixPeopleData = (peopleResults) => {
+export const peopleDataCleaner = (peopleResults) => {
   const people = peopleResults.map(async person => {
     const speciesJSON = await fetchAPI(person.species[0])
     const planetJSON = await fetchAPI(person.homeworld)
