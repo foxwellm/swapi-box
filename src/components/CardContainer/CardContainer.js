@@ -5,45 +5,34 @@ import Card from '../Card/Card'
 export default class CardContainer extends Component {
   constructor() {
     super()
-    this.state = {
-      isLoading: true,
-      cards: null
-    }
-  }
-  async componentDidMount() {
-    // debugger
-    try {
-      const response = await fetch(`https://swapi.co/api/${this.props.page}/`)
-      const cards = await response.json()
-      debugger
-      this.setState({ cards: cards.results, isLoading:false })
-      // this.setState({ films: films.results, isLoading: false })
-    } catch (error) {
-      console.log(error)
-    }
+    // this.state = {
+    //   isLoading: true,
+    //   cards: null
+    // }
   }
 
   render() {
-    const { isLoading, cards } = this.state
+    // const { isLoading, cards } = this.state
+    // debugger
     {
-      if (isLoading) {
-        return (
-          <div></div>
-        )
-      } else {
+      // if (isLoading) {
+      //   return (
+      //     <div></div>
+      //   )
+      // } else {
 
         return (
 
           <div>
             {
-              cards.map(card => {
+              this.props.cards.map(card => {
                 return <Card card={card} />
               })
             }
 
           </div>
         )
-      }
+      
     }
   }
 }

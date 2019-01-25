@@ -25,8 +25,7 @@ export default class App extends Component {
   }
 
   handleNavBtnClick = (page) => {
-    // debugger
-    this.setState({ page })
+    this.retrieveData(page)
   }
 
   fetchData = async (category) => {
@@ -43,7 +42,7 @@ export default class App extends Component {
           request = result.next
         } else {
           const endresults = await helper[`${category}DataCleaner`](fullResults, category)
-          this.setState({ [category]: endresults, isLoading: false })
+          this.setState({ [category]: endresults, isLoading: false, page: category })
           request = null
         }
         // result.next ? request = result.next
@@ -56,22 +55,22 @@ export default class App extends Component {
     }
   };
 
-  retrieveData = async (topic) => {
+  retrieveData = async (category) => {
     // debugger
-    // if (this.state[topic] === null) {
-      this.fetchData(topic);
+    if (this.state[category]) {
+      this.setState({ page: category, isLoading: false });
     
       
-    // } else {
-    //   debugger
+    } else {
+      this.fetchData(category);
 
-    // }
+    }
   }
 
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    this.retrieveData('planets')
+    this.retrieveData('films')
   }
 
   // async componentDidMount() {
@@ -94,8 +93,8 @@ export default class App extends Component {
         <div className="App">
           <NavBar categories={categories} favoriteCount={favoriteCount} handleNavBtnClick={this.handleNavBtnClick} />
           {
-            // page ? <CardContainer page={page}/> :
-            //   <Home films={films[randomFilm].opening_crawl} />
+            page ? <CardContainer page={page} cards={this.state[page]} /> :
+              <Home films={films[randomFilm].opening_crawl} />
           }
 
 
