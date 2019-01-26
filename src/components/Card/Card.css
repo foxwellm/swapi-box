@@ -1,0 +1,11 @@
+.Card {
+  width: 300px;
+  height: 400px;
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-thing {
+  height: 50px;
+}

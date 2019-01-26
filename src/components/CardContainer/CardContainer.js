@@ -11,15 +11,17 @@ export default class CardContainer extends Component {
 
 
   render() {
-    const { favorites, cards } = this.props
+    const { favorites, cards, currentCategory } = this.props
+    const categoryCards = currentCategory === 'favorites' ? null
+    :
+      cards.map(card => {
+        return <Card {...card} currentCategory={currentCategory} favorites={favorites} />
+      })
 
+    // const favoriteCards = null;
         return (
-          <div>
-            {
-              cards.map(card => {
-                return <Card card={card} favorites={favorites} />
-              })
-            }
+          <div className="CardContainer">
+            {categoryCards}
           </div>
         )
       

@@ -19,7 +19,7 @@ export const vehiclesDataCleaner = (vehicleResults) => {
     return {
       name: vehicle.name,
       model: vehicle.model,
-      class: vehicle.vehicle_class,
+      vclass: vehicle.vehicle_class,
       passengers: vehicle.passengers
     }
   })

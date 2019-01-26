@@ -46,13 +46,13 @@ export const vehicleResultsCleaned = [
   {
     "name": "Sand Crawler",
     "model": "Digger Crawler",
-    "class": "wheeled",
+    "vclass": "wheeled",
     "passengers": "30"
   },
   {
     "name": "T-16 skyhopper",
     "model": "T-16 skyhopper",
-    "class": "repulsorcraft",
+    "vclass": "repulsorcraft",
     "passengers": "1"
   }
 ]

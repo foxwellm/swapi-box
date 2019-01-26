@@ -15,10 +15,13 @@ export default class NavButton extends Component {
 const {retrieveData, favoriteCount, category} = this.props
  
     return (
-      <button onClick={() => retrieveData(category)}>
-        {category}
-        {favoriteCount !== null ? <FavoriteButton favoriteCount={favoriteCount} /> : null}
-      </button>
+  
+        <button className="NavButton" onClick={() => retrieveData(category)}>
+          {category}
+          {favoriteCount !== null ? <FavoriteButton favoriteCount={favoriteCount} /> : null}
+        </button>
+     
+
     )
   }
 }

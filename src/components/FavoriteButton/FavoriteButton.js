@@ -9,8 +9,8 @@ export default class FavoriteButton extends Component {
 
   render() {
     return (
-      <button >
-        #
+      <button className="FavoriteButton">
+        Fav
         
       </button>
     )
