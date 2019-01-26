@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Card.css'
+import CardFavoriteButton from '../CardFavoriteButton/CardFavoriteButton';
 
 export default class Card extends Component {
   constructor() {
@@ -8,9 +9,10 @@ export default class Card extends Component {
 
 
   render() {
-    // debugger
+    const { favorites } = this.props
     return (
       <div>
+        <CardFavoriteButton favorites={favorites} />
         {this.props.card.name}
       </div>
     )

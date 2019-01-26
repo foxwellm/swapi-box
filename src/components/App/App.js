@@ -10,9 +10,10 @@ export default class App extends Component {
   constructor() {
     super()
     this.state = {
-      categories: ['people', 'planets', 'vehicles'],
+      categories: ['people', 'planets', 'vehicles', 'favorites'],
       randomFilm: 2,
       favoriteCount: 5,
+      favorites: null,
       films: null,
       isLoading: true,
       page: null,
@@ -21,11 +22,6 @@ export default class App extends Component {
       planets: null,
       vehicles: null,
     }
-
-  }
-
-  handleNavBtnClick = (page) => {
-    this.retrieveData(page)
   }
 
   fetchData = async (category) => {
@@ -38,16 +34,12 @@ export default class App extends Component {
         fullResults = fullResults.concat(result.results)
         result.next=null //testing
         if (result.next) {
-          // request = result.next
           request = result.next
         } else {
           const endresults = await helper[`${category}DataCleaner`](fullResults, category)
           this.setState({ [category]: endresults, isLoading: false, page: category })
           request = null
         }
-        // result.next ? request = result.next
-        //   : fixVehicleData(fullResults)
-          // : this.setState({ [category]: fullResults, isLoading: false }, request = null)
       }
       catch (error) {
         this.setState({ error, isLoading: false });
@@ -56,48 +48,28 @@ export default class App extends Component {
   };
 
   retrieveData = async (category) => {
-    // debugger
-    if (this.state[category]) {
+    if (this.state[category] || category === 'favorites') {
       this.setState({ page: category, isLoading: false });
-    
-      
     } else {
       this.fetchData(category);
-
     }
   }
 
-
   componentDidMount() {
     this.setState({ isLoading: true });
-    this.retrieveData('films')
+    this.retrieveData('films') 
   }
 
-  // async componentDidMount() {
-  //   // this.setState({ isLoading: true })
-  //   try {
-  //     const response = await fetch('https://swapi.co/api/films/')
-  //     const films = await response.json()
-  //     this.setState({ films: films.results, isLoading:false })
-  //   } catch(error) {
-  //     console.log(error)
-  //   }
-  // }
-
-
   render() {
-    const { categories, favoriteCount, films, isLoading, page, randomFilm } = this.state
-    // debugger
+    const { categories, favoriteCount, films, isLoading, page, randomFilm, favorites } = this.state
     if (!isLoading) {
       return (
         <div className="App">
-          <NavBar categories={categories} favoriteCount={favoriteCount} handleNavBtnClick={this.handleNavBtnClick} />
+          <NavBar categories={categories} favoriteCount={favoriteCount} retrieveData={this.retrieveData} />
           {
-            page ? <CardContainer page={page} cards={this.state[page]} /> :
+            page !== 'films' ? <CardContainer page={page} cards={this.state[page]} favorites={favorites} /> :
               <Home films={films[randomFilm].opening_crawl} />
           }
-
-
         </div>
       );
     } else {

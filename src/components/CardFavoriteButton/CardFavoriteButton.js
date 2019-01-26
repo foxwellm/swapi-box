@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './FavoriteNavButton.css'
+import './CardFavoriteButton.css'
 
-export default class FavoriteNavButton extends Component {
+export default class CardFavoriteButton extends Component {
   constructor() {
     super()
   }
@@ -10,8 +10,8 @@ export default class FavoriteNavButton extends Component {
   render() {
     return (
       <button>
-        Favorites
-        {this.props.favoriteCount}
+        
+        {this.props.favorites}
       </button>
     )
   }

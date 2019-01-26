@@ -29,15 +29,6 @@ export const vehiclesDataCleaner = (vehicleResults) => {
 export const planetsDataCleaner = (planetsResults) => {
   const planets = planetsResults.map(async planet => {
   const residents = await getResidents(planet.residents)
-// let residents
-//     if(planet.residents.length > 1) {
-//     residents = await planet.residents.map( async resident => {
-//       const residentJSON = await API.fetchAPI(resident)
-//       return Promise.all(residentJSON.name)
-//     })
-//   } else {
-//     resident = 'none'
-//   }
     return {
       name: planet.name,
       terrain: planet.terrain,
@@ -56,6 +47,8 @@ const getResidents = (residents) => {
   })
 return Promise.all(endResidents)
 }
+
+
 
 export const peopleDataCleaner = (peopleResults) => {
   const people = peopleResults.map(async person => {

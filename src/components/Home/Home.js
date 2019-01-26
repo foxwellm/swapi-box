@@ -11,7 +11,7 @@ export default class Home extends Component {
     return (
       <div className="scroll-container">
         <div className="scroll">
-          <p className="scroll-color">{this.props.films}</p>
+          {/* <p className="scroll-color">{this.props.films}</p> */}
         </div>
       </div>
     )
