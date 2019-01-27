@@ -18,7 +18,6 @@ const {retrieveData, favoriteCount, category} = this.props
   
         <button className="NavButton" onClick={() => retrieveData(category)}>
           {category}
-          {favoriteCount !== null ? <FavoriteButton favoriteCount={favoriteCount} /> : null}
         </button>
      
 

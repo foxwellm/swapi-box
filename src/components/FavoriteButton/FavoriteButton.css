@@ -11,3 +11,7 @@
     align-self: flex-end;
   /* flex: 1; */
 }
+
+.favorite {
+  background-color: yellow;
+}

@@ -9,17 +9,18 @@ export default class Card extends Component {
 
 
   render() {
-    const { currentCategory, favorites } = this.props
+    debugger
+    const { currentCategory, favorites, setFavorite, category, isFavorite } = this.props
     const { name, species, homeworld, population } = this.props
     const { model, vclass, passengers } = this.props
     const { residents, climate, terrain } = this.props
 
 
-
+debugger
 
     return (
       <div className="Card">
-        <FavoriteButton favorites={favorites} />
+        <FavoriteButton setFavorite={setFavorite} isFavorite={isFavorite} category={category} name={name} />
         {
           currentCategory === 'people' ?
             <div>

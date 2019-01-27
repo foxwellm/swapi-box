@@ -8,8 +8,13 @@ export default class FavoriteButton extends Component {
 
 
   render() {
+    const {setFavorite, isFavorite, category, name} = this.props
+   const cssClasses = [
+     "FavoriteButton",
+     isFavorite ? "favorite" : null
+   ]
     return (
-      <button className="FavoriteButton">
+      <button onClick={setFavorite} name={category} value={name} className={cssClasses.join(' ')}>
         Fav
         
       </button>
