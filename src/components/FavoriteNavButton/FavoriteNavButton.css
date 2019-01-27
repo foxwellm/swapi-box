@@ -1,0 +1,9 @@
+.FavoriteNavButton {
+  font-size: 10px;
+  font-family: inherit;
+  border: 0;
+  padding: 0;
+  height: 50px;
+  margin: 2px;
+  width: 250px;
+}

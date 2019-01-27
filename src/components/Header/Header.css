@@ -1,0 +1,47 @@
+.Header {
+  width: 100%;
+  height: 20%;
+  background-color: red;
+}
+
+.container {
+  width: 50%;
+  height: 20%;
+  background-color: blue;
+  display: flex;
+  margin: auto;
+  /* transform: scale(3); */
+}
+
+.letter--container {
+  height: 100px;
+  width: 100px;
+  background-color: green;
+  position: relative;
+  /* transform: scale(3); */
+}
+
+.letter-piece {
+
+transform: scale(3);
+
+}
+
+.top-s {
+  width: 100%;
+  height: 2%;
+  background-color: aqua;
+}
+
+.mid-s {
+  width: 100%;
+  height: 2%;
+  background-color: aqua;
+  transform: rotate(45deg);
+}
+
+.bot-s {
+  width: 100%;
+  height: 2%;
+  background-color: aqua;
+}

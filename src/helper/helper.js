@@ -1,4 +1,4 @@
-import {fetchAPI} from '../api/api';
+import { fetchAPI } from '../api/api';
 
 export const filmsDataCleaner = (filmsResults) => {
   const films = filmsResults.map(film => {
@@ -15,12 +15,14 @@ export const filmsDataCleaner = (filmsResults) => {
 }
 
 export const vehiclesDataCleaner = (vehicleResults) => {
-  const vehicles = vehicleResults.map(vehicle => {
+  var vehicles = vehicleResults.map(vehicle => {
     return {
       name: vehicle.name,
       model: vehicle.model,
       vclass: vehicle.vehicle_class,
-      passengers: vehicle.passengers
+      passengers: vehicle.passengers,
+      category: "vehicles",
+      isFavorite: false
     }
   })
   return vehicles
@@ -28,24 +30,26 @@ export const vehiclesDataCleaner = (vehicleResults) => {
 
 export const planetsDataCleaner = (planetsResults) => {
   const planets = planetsResults.map(async planet => {
-  const residents = await getResidents(planet.residents)
+    const residents = await getResidents(planet.residents)
     return {
       name: planet.name,
       terrain: planet.terrain,
       population: planet.population,
       climate: planet.climate,
-      residents: residents
+      residents: residents,
+      category: "planets",
+      isFavorite: false
     }
   })
   return Promise.all(planets)
 }
 
 const getResidents = (residents) => {
-  const endResidents = residents.map( async resident => {
+  const endResidents = residents.map(async resident => {
     const residentJSON = await fetchAPI(resident)
     return residentJSON.name
   })
-return Promise.all(endResidents)
+  return Promise.all(endResidents)
 }
 
 
@@ -58,7 +62,9 @@ export const peopleDataCleaner = (peopleResults) => {
       name: person.name,
       species: speciesJSON.name,
       homeworld: planetJSON.name,
-      population: planetJSON.population
+      population: planetJSON.population,
+      category: "people",
+      isFavorite: false
     }
   })
   return Promise.all(people)

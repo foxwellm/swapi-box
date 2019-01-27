@@ -1,7 +1,7 @@
 import * as mockFilms from '../mockData/films'
 import * as mockVehicles from '../mockData/vehicles'
 import * as mockPeople from '../mockData/people'
-import fetchAPI from '../api/api'
+import {fetchAPI} from '../api/api'
 import * as helper from './helper';
 
 describe('helper functions', () => {

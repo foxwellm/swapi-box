@@ -1,20 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import {fetchAPI} from './api';
-import { shallow } from 'enzyme'
-import films from '../mockData/films'
+import * as mockFilms from '../mockData/films'
 
 describe('api fetch call', () => {
-beforeEach(() => {
-  // window.fetch = jest.fn();
-  // mockUrl = 'https://swapi.co/api/films/'
-})
+  const mockUrl = 'https://swapi.co/api/films/'
 
   it('should call fetch with the correct params', async () => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         json: () => {
-          return Promise.resolve(films);
+          return Promise.resolve(mockUrl);
         },
         ok: true
       });
@@ -22,7 +16,7 @@ beforeEach(() => {
 
     const expected = 'https://swapi.co/api/films/';
 
-    await fetchAPI('https://swapi.co/api/films/');
+    await fetchAPI(mockUrl);
     expect(window.fetch).toHaveBeenCalledWith(expected);
   });
 
@@ -30,26 +24,22 @@ beforeEach(() => {
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
         json: () => {
-          return Promise.resolve(films);
+          return Promise.resolve(mockFilms.filmResults);
         },
         ok: true
       });
     });
 
-    const expected = 'https://swapi.co/api/films/';
-
-    await fetchAPI('https://swapi.co/api/films/');
-    expect(window.fetch).toHaveBeenCalledWith(expected);
-    // expect(result).toEqual(films)
+    const result = await fetchAPI(mockUrl);
+    expect(result).toEqual(mockFilms.filmResults);
   });
 
-  it('should throw an error if fetch fails', () => {
+  it('should throw an error if fetch fails', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.reject(
       Error('Could not fetch')
     ))
 
     const expected = Error('Could not fetch');
-
-    expect(fetchAPI('https://swapi.co/api/films/')).rejects.toEqual(expected);
+    await expect(fetchAPI(mockUrl)).rejects.toEqual(expected);
   });
 })
