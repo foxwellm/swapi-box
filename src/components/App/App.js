@@ -6,6 +6,7 @@ import CardContainer from '../CardContainer/CardContainer'
 import { fetchAPI } from '../../api/api';
 import * as helper from '../../helper/helper';
 import { peopleResultsCleaned } from '../../mockData/people'
+import {Header} from '../Header/Header'
 
 export default class App extends Component {
   constructor() {
@@ -42,14 +43,14 @@ export default class App extends Component {
         }
       }
       catch (error) {
-        this.setState({ error, isLoading: false });
+        this.setState({ error, isLoading: false })
       }
     }
-  };
+  }
 
   retrieveData = async (category) => {
     if (this.state[category] || category === 'favorites') {
-      this.setState({ currentCategory: category, isLoading: false });
+      this.setState({ currentCategory: category, isLoading: false })
     } else {
       this.fetchAndStoreData(category);
     }
@@ -57,9 +58,9 @@ export default class App extends Component {
 
   setFavorite = (e) => {
     e.preventDefault()
-    const { name: category, value: name } = e.target;
+    const { name: category, value: name } = e.target
     const arrayOfCategory = [...this.state[category]]
-    let newFavoriteCount = this.state.favoriteCount;
+    let newFavoriteCount = this.state.favoriteCount
     let modifyFavoriteCount = 0
     let addFavorite = arrayOfCategory.map(thing => {
       if (thing.name === name) {
@@ -83,6 +84,7 @@ export default class App extends Component {
     if (!isLoading) {
       return (
         <div className="App">
+          <Header />
           <NavBar categories={categories} favoriteCount={favoriteCount} retrieveData={this.retrieveData} />
           {
             currentCategory !== 'films' ?

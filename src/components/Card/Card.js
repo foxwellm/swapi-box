@@ -9,14 +9,14 @@ export default class Card extends Component {
 
 
   render() {
-    debugger
+    
     const { currentCategory, favorites, setFavorite, category, isFavorite } = this.props
     const { name, species, homeworld, population } = this.props
     const { model, vclass, passengers } = this.props
     const { residents, climate, terrain } = this.props
 
 
-debugger
+
 
     return (
       <div className="Card">
