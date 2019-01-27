@@ -65,12 +65,14 @@ export const peopleResultsCleaned = [
     "name": "Luke Skywalker",
     "species": "Human",
     "homeworld": "Tatooine",
-    "population": "200000"
+    "population": "200000",
+    "category": "people"
   },
   {
     "name": "C-3PO",
     "species": "Droid",
     "homeworld": "Tatooine",
-    "population": "200000"
+    "population": "200000",
+    "category": "people"
   }
 ]

@@ -8,7 +8,10 @@ export default class NavButton extends Component {
   }
 
  
-
+handleClick = (e, category) => {
+  e.preventDefault()
+this.props.retrieveData(category)
+}
 
   render() {
  
@@ -16,7 +19,7 @@ const {retrieveData, favoriteCount, category} = this.props
  
     return (
   
-        <button className="NavButton" onClick={() => retrieveData(category)}>
+        <button className="NavButton" onClick={(e) => this.handleClick(e, category)}>
           {category}
         </button>
      

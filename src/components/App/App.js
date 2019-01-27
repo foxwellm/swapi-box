@@ -6,7 +6,7 @@ import CardContainer from '../CardContainer/CardContainer'
 import { fetchAPI } from '../../api/api';
 import * as helper from '../../helper/helper';
 import { peopleResultsCleaned } from '../../mockData/people'
-import {Header} from '../Header/Header'
+import { Header } from '../Header/Header'
 
 export default class App extends Component {
   constructor() {
@@ -15,9 +15,10 @@ export default class App extends Component {
       categories: ['people', 'planets', 'vehicles'],
       randomFilm: 0,
       favoriteCount: 0,
+      favorites: {},
       films: null,
       isLoading: true,
-      currentCategory: 'people', //testing
+      currentCategory: 'films', //testing
       error: null,
       people: null,
       planets: null,
@@ -49,6 +50,8 @@ export default class App extends Component {
   }
 
   retrieveData = async (category) => {
+
+    this.updateStateFromLocalStorageFavorites()
     if (this.state[category] || category === 'favorites') {
       this.setState({ currentCategory: category, isLoading: false })
     } else {
@@ -56,56 +59,76 @@ export default class App extends Component {
     }
   }
 
-  setFavorite = (e) => {
-    e.preventDefault()
-    const { name: category, value: name } = e.target
-    const arrayOfCategory = [...this.state[category]]
+  setFavorite = (card) => {
     let newFavoriteCount = this.state.favoriteCount
-    let modifyFavoriteCount = 0
-    let addFavorite = arrayOfCategory.map(thing => {
-      if (thing.name === name) {
-        thing.isFavorite ? modifyFavoriteCount-- : modifyFavoriteCount++
-        thing.isFavorite = !thing.isFavorite
+    let currentFavorites = JSON.parse(localStorage.getItem('favorites') || "{}")
+    if (currentFavorites[card.category]) {
+      let isFavorite = currentFavorites[card.category].find( car => {
+        return car.name === card.name
+      })
+      if (isFavorite) {
+        var indexOFFavorite = currentFavorites[card.category].indexOf(card);
+        currentFavorites[card.category].splice(indexOFFavorite, 1);
+        newFavoriteCount--
+      } else {
+        currentFavorites[card.category].push(card);
+        newFavoriteCount++
       }
-      return thing
-    })
-    newFavoriteCount += modifyFavoriteCount
-    this.setState({ [category]: addFavorite, favoriteCount: newFavoriteCount })
-  }
-
-  componentDidMount() {
-    // this.setState({ isLoading: true });
-    // this.retrieveData('people') 
-    this.setState({ people: peopleResultsCleaned, isLoading: false })//testing
-  }
-
-  render() {
-    const { categories, favoriteCount, films, isLoading, currentCategory, randomFilm, people, planets, vehicles } = this.state
-    if (!isLoading) {
-      return (
-        <div className="App">
-          <Header />
-          <NavBar categories={categories} favoriteCount={favoriteCount} retrieveData={this.retrieveData} />
-          {
-            currentCategory !== 'films' ?
-              <CardContainer
-                currentCategory={currentCategory}
-                setFavorite={this.setFavorite}
-                categories={categories}
-                people={people}
-                planets={planets}
-                vehicles={vehicles}
-                cards={this.state[currentCategory]}
-              />
-              :
-              <Home films={films[randomFilm].opening_crawl} />
-          }
-        </div>
-      );
     } else {
-      return (
-        <div></div>
-      )
+      currentFavorites[card.category] = [card]
+      newFavoriteCount++
+    }
+    this.setState({ favoriteCount: newFavoriteCount })
+    localStorage.setItem('favorites', JSON.stringify(currentFavorites))
+  }
+
+  updateStateFromLocalStorageFavorites = () => {
+    const currentFavoritesInLocalStorage = JSON.parse(localStorage.getItem('favorites') || "{}")
+    let favoriteCount = 0
+    for (let category in currentFavoritesInLocalStorage) {
+      currentFavoritesInLocalStorage[category].forEach(card => {
+        favoriteCount++
+      })
+    }
+    this.setState({ favorites: currentFavoritesInLocalStorage, favoriteCount })
+  }
+
+    componentDidMount() {
+      this.setState({ isLoading: true });
+      this.retrieveData('films') 
+      this.updateStateFromLocalStorageFavorites()
+      
+      // this.setState({ people: peopleResultsCleaned, isLoading: false })//testing
+    }
+
+    render() {
+      const { categories, favoriteCount, favorites, films, isLoading, currentCategory, randomFilm, people, planets, vehicles } = this.state
+      if (!isLoading) {
+        return (
+          <div className="App">
+            <Header />
+            <NavBar categories={categories} favoriteCount={favoriteCount} retrieveData={this.retrieveData} />
+            {
+              currentCategory !== 'films' ?
+                <CardContainer
+                  currentCategory={currentCategory}
+                  setFavorite={this.setFavorite}
+                  favorites={favorites}
+                  categories={categories}
+                  people={people}
+                  planets={planets}
+                  vehicles={vehicles}
+                  cards={this.state[currentCategory]}
+                />
+                :
+                <Home films={films[randomFilm].opening_crawl} />
+            }
+          </div>
+        );
+      } else {
+        return (
+          <div></div>
+        )
+      }
     }
   }
-}

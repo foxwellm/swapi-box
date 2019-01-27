@@ -9,27 +9,28 @@ export default class Card extends Component {
 
 
   render() {
+    // debugger
+    const { currentCategory, setFavorite, card, isFavorite  } = this.props
+    const { name, species, homeworld, population, category } = this.props.card
+    const { model, vclass, passengers } = this.props.card
+    const { residents, climate, terrain } = this.props.card
+   if (category === 'favorites') {
     
-    const { currentCategory, favorites, setFavorite, category, isFavorite } = this.props
-    const { name, species, homeworld, population } = this.props
-    const { model, vclass, passengers } = this.props
-    const { residents, climate, terrain } = this.props
-
-
+   }
 
 
     return (
       <div className="Card">
-        <FavoriteButton setFavorite={setFavorite} isFavorite={isFavorite} category={category} name={name} />
+        <FavoriteButton setFavorite={setFavorite} card={card} isFavorite={isFavorite} category={category} name={name} />
         {
-          currentCategory === 'people' ?
+          category === 'people' ?
             <div>
               <div className="card-thing">{name}</div>
               <div className="card-thing">{species}</div>
               <div className="card-thing">{homeworld}</div>
               <div className="card-thing">{population}</div>
             </div>
-            : currentCategory === 'planets' ?
+            : category === 'planets' ?
               <div>
                 <div className="card-thing">{name}</div>
                 <div className="card-thing">{residents}</div>
@@ -37,7 +38,7 @@ export default class Card extends Component {
                 <div className="card-thing">{population}</div>
                 <div className="card-thing">{terrain}</div>
               </div>
-              : currentCategory === 'vehicles' ?
+              : category === 'vehicles' ?
                 <div>
                   <div className="card-thing">{name}</div>
                   <div className="card-thing">{model}</div>
@@ -48,7 +49,7 @@ export default class Card extends Component {
                       : null
                   }
                 </div>
-                : currentCategory === 'favorites' ?
+                : category === 'favorites' ?
                   <div></div>
                   : null
         }

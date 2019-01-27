@@ -7,15 +7,17 @@ export default class FavoriteNavButton extends Component {
   }
 
 
-
+handleClick = (e) => {
+  e.preventDefault()
+  this.props.retrieveData('favorites')
+}
 
   render() {
 
-    const { retrieveData, favoriteCount, category } = this.props
-// debugger
+    const {  favoriteCount } = this.props
     return (
 
-      <button className="FavoriteNavButton" onClick={() => retrieveData('favorites')}>
+      <button className="FavoriteNavButton" onClick={(e) => this.handleClick(e)}>
         Favorites
        {favoriteCount}
       </button>
