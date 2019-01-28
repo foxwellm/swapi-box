@@ -8,6 +8,8 @@
   border-radius: 30px;
   text-transform: capitalize;
   transition: .3s;
+  color: yellow;
+  background-color: transparent;
 }
 
 .FavoriteNavButton:hover {

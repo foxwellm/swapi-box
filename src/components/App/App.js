@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { NavBar } from '../NavBar/NavBar'
-import Home from '../Home/Home'
+import { Home } from '../Home/Home'
 import CardContainer from '../CardContainer/CardContainer'
 import { fetchAPI } from '../../api/api';
 import * as helper from '../../helper/helper';
@@ -12,7 +12,7 @@ export default class App extends Component {
     super()
     this.state = {
       categories: ['people', 'planets', 'vehicles'],
-      randomFilm: 0,
+      randomFilm: Math.floor(Math.random() * 7),
       favoriteCount: JSON.parse(localStorage.getItem('favoriteCount') || 0),
       favorites: JSON.parse(localStorage.getItem('favorites') || "{}"),
       films: JSON.parse(localStorage.getItem('films') || null),
@@ -33,10 +33,7 @@ export default class App extends Component {
     while (request) {
       try {
         const result = await fetchAPI(request)
-        // debugger
         fullResults = fullResults.concat(result.results)
-        // result.next = null //testing
-        // debugger
         if (result.next) {
           request = result.next
         } else {
@@ -58,6 +55,16 @@ export default class App extends Component {
     } else {
       this.setState({ categoryLoading: true })
       this.fetchAndStoreData(category);
+    }
+  }
+
+  randomFilmGenerator = () => {
+    const currentFilm = this.state.randomFilm
+    const newFilm = Math.floor(Math.random() * 7);
+    if (newFilm === currentFilm) {
+      this.randomFilmGenerator()
+    } else {
+      this.setState({ randomFilm: newFilm, currentCategory: 'films' })
     }
   }
 
@@ -102,7 +109,7 @@ export default class App extends Component {
     } else {
       return (
         <div className="App">
-          <Header />
+          <Header randomFilmGenerator={this.randomFilmGenerator} />
           <NavBar categories={categories} favoriteCount={favoriteCount} retrieveData={this.retrieveData} />
           {
             categoryLoading ? <div>Loading</div>

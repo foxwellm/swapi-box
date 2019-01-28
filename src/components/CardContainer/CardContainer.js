@@ -13,7 +13,7 @@ export default class CardContainer extends Component {
 
   handleNextPageClick = () => {
     const currentPage = this.state.page
-    this.setState({page: currentPage++})
+    this.setState({ page: currentPage++ })
   }
 
   handlePrevtPageClick = () => {
@@ -28,7 +28,7 @@ export default class CardContainer extends Component {
       let cards;
       for (let category in favorites) {
         cards = favorites[category].map(card => {
-          return <Card card={card} setFavorite={setFavorite}/>
+          return <Card card={card} setFavorite={setFavorite} isFavorite={true} />
         })
         categoryCards.push(cards)
       }
@@ -48,9 +48,8 @@ export default class CardContainer extends Component {
 
     return (
       <div className="CardContainer">
-      <div className="button-container"></div>
+        <div className="button-container"></div>
         <div className="cards-container"> {categoryCards}</div>
-        
       </div>
     )
   }

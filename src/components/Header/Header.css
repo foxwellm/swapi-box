@@ -1,12 +1,14 @@
 .Header {
   width: 100%;
-  height: 20%;
-  font-size: 140px;
-
+  height: 25%;
+  background-color: black;
+  color: yellow;
 }
 
 .container {
-  width: 50%;
+  width: 45%;
+  height:15%;
+  font-size: 140px;
   display: flex;
   margin: auto;
   transition: .3s;

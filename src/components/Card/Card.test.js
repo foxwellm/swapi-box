@@ -7,12 +7,10 @@ import * as mockFilms from '../../mockData/films'
 describe('Card', () => {
   let wrapper;
   let mockFilmsState = mockFilms.filmResultsCleaned
-  // console.log('hello', mockFilmsState)
   beforeEach(() => {
     wrapper = shallow(<Card />);
   })
 
-  // console.log('hello', wrapper.state('films'))
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Card />, div);

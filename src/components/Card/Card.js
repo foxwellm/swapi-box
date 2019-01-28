@@ -8,18 +8,19 @@ export default class Card extends Component {
 
   }
 
-
-
   render() {
     const { setFavorite, card, isFavorite  } = this.props
     const { name, species, homeworld, population, category } = this.props.card
     const { model, vclass, passengers } = this.props.card
     const { residents, climate, terrain } = this.props.card
  
-
+const cssClasses = [
+  "Card",
+  `${category}`
+]
 
     return (
-      <div className="Card">
+      <div className={cssClasses.join(' ')}>
         <FavoriteButton setFavorite={setFavorite} card={card} isFavorite={isFavorite} category={category} name={name} />
         {
           category === 'people' ?
