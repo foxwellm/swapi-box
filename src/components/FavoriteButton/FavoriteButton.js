@@ -15,8 +15,7 @@ export default class FavoriteButton extends Component {
     const { category, card, isFavorite } = this.props
     const cssClasses = [
       "FavoriteButton",
-      isFavorite ? "favorite"
-        : null
+      isFavorite ? "favorite" : null
     ]
     return (
       <button onClick={(e) => this.handleFavoriteClick(e)} name={category} value={card} className={cssClasses.join(' ')}>
