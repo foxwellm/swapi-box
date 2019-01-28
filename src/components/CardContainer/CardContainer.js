@@ -9,7 +9,8 @@ export default class CardContainer extends Component {
     this.state = {
       min: 0,
       max: 10,
-      total: 0
+      total: 0,
+      currentCategory: ''
     }
   }
 
@@ -23,8 +24,12 @@ export default class CardContainer extends Component {
     this.setState({ min: min - 10, max: max - 10 })
   }
 
-  static getDerivedStateFromProps(props) {
-    return { total: props[props.currentCategory].length }
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.currentCategory !== nextProps.currentCategory) {
+    return { currentCategory: nextProps.currentCategory, total: nextProps[nextProps.currentCategory].length, min: 0, max: 10 }
+    } else {
+      return null
+    }
   }
 
   render() {
@@ -35,7 +40,9 @@ export default class CardContainer extends Component {
       let cards;
       for (let category in favorites) {
         cards = favorites[category].map((card, i) => {
+          if (i >= this.state.min && i < this.state.max) {
           return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={true} />
+          }
         })
         categoryCards.push(cards)
       }
