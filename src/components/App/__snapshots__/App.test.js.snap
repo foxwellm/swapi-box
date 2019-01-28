@@ -18,6 +18,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": "Loading",
+      "className": "loading",
     },
     "ref": null,
     "rendered": "Loading",
@@ -30,6 +31,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": "Loading",
+        "className": "loading",
       },
       "ref": null,
       "rendered": "Loading",

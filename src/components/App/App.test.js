@@ -91,31 +91,35 @@ describe('App', () => {
 
   })
 
-  // describe('fetchAndStoreData method', async () => {
+  describe('randomFilmGenerator method', () => {
 
-  //   it("should add favorite cards to state and localStorage and increase count by 1", () => {
-  //     //setup
-  //     expect(wrapper.state('favorites')).toEqual({})
-  //     expect(wrapper.state('favoriteCount')).toEqual(0)
-  //     //execution
-  //     wrapper.instance().setFavorite(mockPeople.personToFavorite)
-  //     //expectation
-  //     expect(wrapper.state('favorites')).toEqual({ people: [mockPeople.personToFavorite] })
-  //     expect(wrapper.state('favoriteCount')).toEqual(1)
-  //     expect(JSON.parse(localStorage.favorites)).toEqual({ people: [mockPeople.personToFavorite] })
-  //   })
+    it("should change state of randomFilm number to a different one than current", () => {
+      //setup
+      wrapper.setState({ randomFilm: 2 })
+      wrapper.setState({ currentCategory: 'people' })
+      //execution
+      wrapper.instance().randomFilmGenerator()
+      //expectation
+      expect(wrapper.state('currentCategory')).toEqual('films')
+      expect(wrapper.state('randomFilm')).not.toEqual(2)
+    })
 
-  //   it("should remove favorite cards from state and localStorage and decrease count by 1", () => {
-  //     //setup
-  //     expect(wrapper.state('favorites')).toEqual({ people: [mockPeople.personToFavorite] })
-  //     expect(wrapper.state('favoriteCount')).toEqual(1)
-  //     //execution
-  //     wrapper.instance().setFavorite(mockPeople.personToFavorite)
-  //     //expectation
-  //     expect(wrapper.state('favorites')).toEqual({ people: [] })
-  //     expect(wrapper.state('favoriteCount')).toEqual(0)
-  //     expect(JSON.parse(localStorage.favorites)).toEqual({ people: [] })
-  //   })
+  })
 
-  // })
+  describe('fetchAndStoreData method', async () => {
+
+    it.skip("should make a fetch call based on category", () => {
+      //setup
+    
+      //execution
+      wrapper.instance().fetchAndStoreData('people')
+      //expectation
+      // expect(wrapper.state('favorites')).toEqual({ people: [mockPeople.personToFavorite] })
+      // expect(wrapper.state('favoriteCount')).toEqual(1)
+      // expect(JSON.parse(localStorage.favorites)).toEqual({ people: [mockPeople.personToFavorite] })
+    })
+
+
+
+  })
 })
