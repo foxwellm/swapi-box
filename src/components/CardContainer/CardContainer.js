@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CardContainer.css'
-import Card from '../Card/Card'
+import { Card } from '../Card/Card'
 import PropTypes from 'prop-types';
 
 export default class CardContainer extends Component {
@@ -12,12 +12,12 @@ export default class CardContainer extends Component {
   }
 
   handleNextPageClick = () => {
-    const currentPage = this.state.page
+    let currentPage = this.state.page
     this.setState({ page: currentPage++ })
   }
 
   handlePrevtPageClick = () => {
-    const currentPage = this.state.page
+    let currentPage = this.state.page
     this.setState({ page: currentPage-- })
   }
 
@@ -28,7 +28,7 @@ export default class CardContainer extends Component {
       let cards;
       for (let category in favorites) {
         cards = favorites[category].map(card => {
-          return <Card card={card} setFavorite={setFavorite} isFavorite={true} />
+          return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={true} />
         })
         categoryCards.push(cards)
       }
@@ -42,7 +42,7 @@ export default class CardContainer extends Component {
           })
         }
         isFavorite = isFavorite ? true : false
-        return <Card card={card} setFavorite={setFavorite} isFavorite={isFavorite} />
+        return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={isFavorite} />
       })
     }
 

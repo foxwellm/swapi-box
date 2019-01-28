@@ -97,14 +97,15 @@ export default class App extends Component {
   }
 
   render() {
-    const { categories, favoriteCount, favorites, films, isLoading, currentCategory, randomFilm, people, planets, vehicles, error, categoryLoading } = this.state
+    const { categories, favoriteCount, favorites, films, isLoading, currentCategory,
+      randomFilm, people, planets, vehicles, error, categoryLoading } = this.state
     if (error) {
       return (
         <div>Error</div>
       )
     } else if (isLoading) {
       return (
-        <div>Loading</div>
+        <div className="loading">Loading</div>
       )
     } else {
       return (
@@ -112,7 +113,7 @@ export default class App extends Component {
           <Header randomFilmGenerator={this.randomFilmGenerator} />
           <NavBar categories={categories} favoriteCount={favoriteCount} retrieveData={this.retrieveData} />
           {
-            categoryLoading ? <div>Loading</div>
+            categoryLoading ? <div className="loading">Loading</div>
               :
               currentCategory !== 'films' ?
                 <CardContainer

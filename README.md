@@ -1,9 +1,9 @@
 # SWAPI-Box
 SWAPI-Box is an app created with react that pulls data from the Starwars API (https://swapi.co/api). The main learning goals from this project were to utilize async/await to pull from multiple levels of the api to display the desired data. Use proper data down/ actions up passing props and utilizing state without the use of Redux.
 
-![main](/images/main.jpg)
-![category](/images/category.jpg)
-![favorites](/images/favorites.jpg)
+![main](/images/main.png)
+![category](/images/category.png)
+![favorites](/images/favorites.png)
 
 ## Set-up
 

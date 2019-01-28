@@ -50,8 +50,6 @@ const getResidents = (residents) => {
   return Promise.all(endResidents)
 }
 
-
-
 export const peopleDataCleaner = (peopleResults) => {
   const people = peopleResults.map(async person => {
     const speciesJSON = person.species[0] === undefined ? 'none' : await fetchAPI(person.species[0])

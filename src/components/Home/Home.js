@@ -1,5 +1,6 @@
-import React from 'react';
+import React from 'react'
 import './Home.css'
+import PropTypes from 'prop-types'
 
 export const Home = ({ films }) => {
   return (
@@ -9,4 +10,7 @@ export const Home = ({ films }) => {
       </div>
     </div>
   )
+}
+Home.propTypes = {
+  films: PropTypes.string
 }
