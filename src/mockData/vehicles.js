@@ -47,12 +47,14 @@ export const vehicleResultsCleaned = [
     "name": "Sand Crawler",
     "model": "Digger Crawler",
     "vclass": "wheeled",
-    "passengers": "30"
+    "passengers": "30",
+    "category": "vehicles"
   },
   {
     "name": "T-16 skyhopper",
     "model": "T-16 skyhopper",
     "vclass": "repulsorcraft",
-    "passengers": "1"
+    "passengers": "1",
+    "category": "vehicles"
   }
 ]

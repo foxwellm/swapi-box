@@ -21,8 +21,7 @@ export const vehiclesDataCleaner = (vehicleResults) => {
       model: vehicle.model,
       vclass: vehicle.vehicle_class,
       passengers: vehicle.passengers,
-      category: "vehicles",
-      isFavorite: false
+      category: "vehicles"
     }
   })
   return vehicles
@@ -37,8 +36,7 @@ export const planetsDataCleaner = (planetsResults) => {
       population: planet.population,
       climate: planet.climate,
       residents: residents,
-      category: "planets",
-      isFavorite: false
+      category: "planets"
     }
   })
   return Promise.all(planets)
@@ -56,15 +54,14 @@ const getResidents = (residents) => {
 
 export const peopleDataCleaner = (peopleResults) => {
   const people = peopleResults.map(async person => {
-    const speciesJSON = await fetchAPI(person.species[0])
+    const speciesJSON = person.species[0] === undefined ? 'none' : await fetchAPI(person.species[0])
     const planetJSON = await fetchAPI(person.homeworld)
     return {
       name: person.name,
-      species: speciesJSON.name,
+      species: speciesJSON.name || 'unknown',
       homeworld: planetJSON.name,
       population: planetJSON.population,
-      category: "people",
-      isFavorite: false
+      category: "people"
     }
   })
   return Promise.all(people)

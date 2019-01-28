@@ -4,33 +4,31 @@ import './FavoriteButton.css'
 export default class FavoriteButton extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      favoriteActive: null
-    }
+
   }
 
-handleFavoriteClick = (e) => {
-  e.preventDefault()
+  handleFavoriteClick = (e) => {
+    e.preventDefault()
 
-  this.props.setFavorite(this.props.card)
-  let newActiveState = this.state.favoriteActive === null ? !this.props.isFavorite : !this.state.favoriteActive
-  // debugger
-this.setState({favoriteActive: newActiveState})
+    this.props.setFavorite(this.props.card)
+    // this.props.switchFavorite(!this.props.isFavorite)
+    //   let newActiveState = this.state.favoriteActive === null ? !this.props.isFavorite : !this.state.favoriteActive
 
-}
+    // this.setState({favoriteActive: newActiveState})
+
+  }
 
 
 
 
   render() {
-    const {setFavorite, category, name, card, isFavorite} = this.props
-    const { favoriteActive} = this.state
-   const cssClasses = [
-     "FavoriteButton",
-     favoriteActive ? "favorite"
-     : isFavorite ? "favorite" 
-      : null
-   ]
+    const { category, name, card, isFavorite } = this.props
+
+    const cssClasses = [
+      "FavoriteButton",
+      isFavorite ? "favorite"
+        : null
+    ]
     return (
       <button onClick={(e) => this.handleFavoriteClick(e)} name={category} value={card} className={cssClasses.join(' ')}>
         Fav

@@ -1,9 +1,16 @@
 .FavoriteNavButton {
-  font-size: 10px;
-  font-family: inherit;
-  border: 0;
+  font-size: 30px;
   padding: 0;
   height: 50px;
   margin: 2px;
   width: 250px;
+  border: 2px solid;
+  border-radius: 30px;
+  text-transform: capitalize;
+  transition: .3s;
+}
+
+.FavoriteNavButton:hover {
+  transform: scale(1.2);
+  transition: .3s;
 }

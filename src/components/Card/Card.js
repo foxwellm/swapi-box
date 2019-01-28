@@ -5,18 +5,17 @@ import FavoriteButton from '../FavoriteButton/FavoriteButton';
 export default class Card extends Component {
   constructor() {
     super()
+
   }
 
 
+
   render() {
-    // debugger
-    const { currentCategory, setFavorite, card, isFavorite  } = this.props
+    const { setFavorite, card, isFavorite  } = this.props
     const { name, species, homeworld, population, category } = this.props.card
     const { model, vclass, passengers } = this.props.card
     const { residents, climate, terrain } = this.props.card
-   if (category === 'favorites') {
-    
-   }
+ 
 
 
     return (
@@ -53,9 +52,6 @@ export default class Card extends Component {
                   <div></div>
                   : null
         }
-
-
-
       </div>
     )
   }

@@ -76,3 +76,12 @@ export const peopleResultsCleaned = [
     "category": "people"
   }
 ]
+
+export const personToFavorite = 
+  {
+    "name": "Luke Skywalker",
+    "species": "Human",
+    "homeworld": "Tatooine",
+    "population": "200000",
+    "category": "people"
+  }

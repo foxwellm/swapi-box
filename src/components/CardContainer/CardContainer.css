@@ -1,8 +1,12 @@
-.CardContainer {
+.cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     grid-auto-rows: auto;
-    grid-gap: 1rem;
+    grid-gap: 1%;
     width: 85%;
     margin: 10px auto;
+}
+
+.button-container {
+    height: 50px;
 }

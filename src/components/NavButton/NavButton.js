@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './NavButton.css'
-import FavoriteButton from '../FavoriteButton/FavoriteButton'
 
 export default class NavButton extends Component {
   constructor() {
@@ -14,12 +13,18 @@ this.props.retrieveData(category)
 }
 
   render() {
+
+
+
  
-const {retrieveData, favoriteCount, category} = this.props
- 
+const {category} = this.props
+    const cssClasses = [
+      "NavButton",
+      `${category}`
+    ]
     return (
   
-        <button className="NavButton" onClick={(e) => this.handleClick(e, category)}>
+        <button className={cssClasses.join(' ')} onClick={(e) => this.handleClick(e, category)}>
           {category}
         </button>
      
