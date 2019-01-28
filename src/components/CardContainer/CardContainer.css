@@ -10,4 +10,20 @@
 
 .button-container {
     height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page-btns {
+    font-size: 15px;
+    padding: 0;
+    height: 25px;
+    margin: 2px;
+    width: 125px;
+    border: 2px solid;
+    border-radius: 15px;
+    text-transform: capitalize;
+    transition: .3s;
+    color: yellow;
+    background-color: transparent;
 }

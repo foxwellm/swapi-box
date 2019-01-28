@@ -4,37 +4,44 @@ import { Card } from '../Card/Card'
 import PropTypes from 'prop-types';
 
 export default class CardContainer extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      page: 1
+      min: 0,
+      max: 10,
+      total: 0
     }
   }
 
   handleNextPageClick = () => {
-    let currentPage = this.state.page
-    this.setState({ page: currentPage++ })
+    let { min, max } = this.state
+    this.setState({ min: min + 10, max: max + 10 })
   }
 
-  handlePrevtPageClick = () => {
-    let currentPage = this.state.page
-    this.setState({ page: currentPage-- })
+  handlePrevPageClick = () => {
+    let { min, max } = this.state
+    this.setState({ min: min - 10, max: max - 10 })
+  }
+
+  static getDerivedStateFromProps(props) {
+    return { total: props[props.currentCategory].length }
   }
 
   render() {
     const { favorites, currentCategory, setFavorite, people, planets, vehicles } = this.props
+    const { min, max, total } = this.state
     let categoryCards = []
     if (currentCategory === 'favorites') {
       let cards;
       for (let category in favorites) {
-        cards = favorites[category].map(card => {
+        cards = favorites[category].map((card, i) => {
           return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={true} />
         })
         categoryCards.push(cards)
       }
 
     } else {
-      categoryCards = this.props[currentCategory].map(card => {
+      categoryCards = this.props[currentCategory].map((card, i) => {
         let isFavorite
         if (favorites[currentCategory]) {
           isFavorite = favorites[currentCategory].find(favcard => {
@@ -42,14 +49,23 @@ export default class CardContainer extends Component {
           })
         }
         isFavorite = isFavorite ? true : false
-        return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={isFavorite} />
+        if (i >= this.state.min && i < this.state.max) {
+          return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={isFavorite} />
+        }
       })
     }
 
     return (
       <div className="CardContainer">
-        <div className="button-container"></div>
-        <div className="cards-container"> {categoryCards}</div>
+        <div className="button-container">
+          {
+            min !== 0 ? <button className="page-btns" onClick={this.handlePrevPageClick}>prev</button> : <div></div>
+          }
+          {
+            max > total ? <div></div> : <button className="page-btns" onClick={this.handleNextPageClick}>next</button>
+          }
+        </div>
+        <div className="cards-container">{categoryCards}</div>
       </div>
     )
   }

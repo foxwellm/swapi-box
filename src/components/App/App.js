@@ -37,7 +37,7 @@ export default class App extends Component {
         if (result.next) {
           request = result.next
         } else {
-          const endResults = await helper[`${category}DataCleaner`](fullResults, category)
+          const endResults = await helper[`${category}DataCleaner`](fullResults)
           this.setState({ [category]: endResults, isLoading: false, categoryLoading: false, currentCategory: category })
           localStorage.setItem(`${category}`, JSON.stringify(endResults))
           request = null
