@@ -15,32 +15,30 @@ export const Card = (props) => {
       {
         category === 'people' ?
           <div>
-            <div className="card-thing">{name}</div>
-            <div className="card-thing">{species}</div>
-            <div className="card-thing">{homeworld}</div>
-            <div className="card-thing">{population}</div>
+            <div className="card-thing card-name">Name: {name}</div>
+            <div className="card-thing">Species: {species}</div>
+            <div className="card-thing">Homeworld: {homeworld}</div>
+            <div className="card-thing">Population: {population}</div>
           </div>
           : category === 'planets' ?
             <div>
-              <div className="card-thing">{name}</div>
-              <div className="card-thing">{residents}</div>
-              <div className="card-thing">{climate}</div>
-              <div className="card-thing">{population}</div>
-              <div className="card-thing">{terrain}</div>
+              <div className="card-thing card-name">Name: {name}</div>
+              <div className="card-thing">Residents: {residents}</div>
+              <div className="card-thing">Climate: {climate}</div>
+              <div className="card-thing">Population: {population}</div>
+              <div className="card-thing">Terrain: {terrain}</div>
             </div>
             : category === 'vehicles' ?
               <div>
-                <div className="card-thing">{name}</div>
-                <div className="card-thing">{model}</div>
-                <div className="card-thing">{vclass}</div>
+                <div className="card-thing card-name">Name: {name}</div>
+                <div className="card-thing">Model: {model}</div>
+                <div className="card-thing">Vehicle class: {vclass}</div>
                 {
                   passengers > 0 ?
-                    <div className="card-thing">{passengers}</div>
+                    <div className="card-thing">Passengers: {passengers}</div>
                     : null
                 }
               </div>
-              : category === 'favorites' ?
-                <div></div>
                 : null
       }
     </div>

@@ -12,16 +12,20 @@
   background-color: transparent;
 }
 
+.NavButton:focus { 
+  outline: none; 
+}
+
 .people {
-  border-color: blue
+  border-color: blue;
 }
 
 .planets {
-  border-color: green
+  border-color: green;
 }
 
 .vehicles {
-  border-color: red
+  border-color: red;
 }
 
 .NavButton:hover {

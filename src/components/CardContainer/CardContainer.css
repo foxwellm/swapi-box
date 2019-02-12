@@ -27,3 +27,7 @@
     color: yellow;
     background-color: transparent;
 }
+
+.page-btns:focus { 
+  outline: none; 
+}
