@@ -42,6 +42,8 @@ export default class CardContainer extends Component {
         cards = favorites[category].map((card, i) => {
           if (i >= this.state.min && i < this.state.max) {
           return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={true} />
+          } else {
+            return null
           }
         })
         categoryCards.push(cards)
@@ -58,6 +60,8 @@ export default class CardContainer extends Component {
         isFavorite = isFavorite ? true : false
         if (i >= this.state.min && i < this.state.max) {
           return <Card {...card} key={card.name} card={card} setFavorite={setFavorite} isFavorite={isFavorite} />
+        } else {
+          return null
         }
       })
     }

@@ -10,6 +10,8 @@ export const Header = ({ randomFilmGenerator }) => {
   )
 }
 
+export default Header
+
 Header.propTypes = {
   randomFilmGenerator: PropTypes.func
 }

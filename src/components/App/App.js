@@ -5,7 +5,7 @@ import { Home } from '../Home/Home'
 import CardContainer from '../CardContainer/CardContainer'
 import { fetchAPI } from '../../api/api';
 import * as helper from '../../helper/helper';
-import { Header } from '../Header/Header'
+import Header from '../Header/Header'
 
 export default class App extends Component {
   constructor() {
